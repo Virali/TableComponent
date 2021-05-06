@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAndSaveLink, saveLink } from '../redux/actions';
 import { getLinkString } from '../redux/selectors';
 
 
-export default function LinkInput() {
+export default function LinkInput(): ReactElement {
   const link = useSelector(getLinkString);
   const dispatch = useDispatch();
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(saveLink(e.target.value));
   };
 

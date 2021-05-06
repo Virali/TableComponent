@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import JSONTextarea from './containers/JSONTextarea';
 import LinkInput from './containers/LinkInput';

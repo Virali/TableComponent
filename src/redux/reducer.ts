@@ -1,7 +1,8 @@
-import { combineReducers } from "redux";
+import { AnyAction, combineReducers } from "redux";
 import { CHANGE_TABLE_ITEM, SAVE_LINK, SAVE_TABLE, SAVE_ENTITY_ID } from "../constants";
+import { RootState } from "./types";
 
-const initialState = {
+const initialState: RootState = {
   linkData: {
     link: '',
     entityId: '',
@@ -9,7 +10,7 @@ const initialState = {
   tableData: [],
 }
 
-function linkReducer(state = initialState.linkData, action) {
+function linkReducer(state = initialState.linkData, action: AnyAction) {
   switch(action.type) {
     case SAVE_LINK:
       return {
@@ -25,7 +26,7 @@ function linkReducer(state = initialState.linkData, action) {
   }
 }
 
-function tableReducer(state = initialState.tableData, action) {
+function tableReducer(state = initialState.tableData, action: AnyAction) {
   switch(action.type) {
     case SAVE_TABLE: {
       return action.payload;
@@ -36,7 +37,7 @@ function tableReducer(state = initialState.tableData, action) {
       return state.map(item => {
         if(item.id === newItem.id) {
           return newItem;
-        };
+        }
         return item;
       })
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import { postTable } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,15 +16,14 @@ const ErrorMessage = styled.p`
   color: red;
 `;
 
-export default function JSONTextarea() {
+export default function JSONTextarea(): ReactElement {
   const [text, setText] = useState('');
   const [isError, setIsError] = useState(false);
   const link = useSelector(getLinkString);
   const dispatch = useDispatch();
 
-  function changeText(e) {
+  function changeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
-    console.log(e.target.value);
     setText(e.target.value);
   }
 
@@ -39,14 +38,14 @@ export default function JSONTextarea() {
     if(!isError) {
       console.log("link: ", link + '/table', "String: ", text);
       dispatch(postTable(JSON.parse(text)));
-    };
-  };
+    }
+  }
 
-  return(
+  return (
     <>
-    <JSONInput onChange={changeText} value={text}/>
-    {isError && <ErrorMessage>Not A Valid JSON</ErrorMessage>}
-    <button onClick={sendData}>Send</button>
+      <JSONInput onChange={changeText} value={text}/>
+      {isError && <ErrorMessage>Not A Valid JSON</ErrorMessage>}
+      <button onClick={sendData}>Send</button>
     </>
   );
-};
+}
