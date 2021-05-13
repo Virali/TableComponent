@@ -1,23 +1,46 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { postTable } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLinkString } from '../redux/selectors';
 
 const JSONInput = styled('textarea')`
-  width: 200px;
-  height: 120px;
+  width: 250px;
+  height: 200px;
   &:focus {
     outline: none;
   }
+  margin: 1vmin;
 `;
 
 const ErrorMessage = styled.p`
   color: red;
 `;
 
-export default function JSONTextarea(): ReactElement {
-  const [text, setText] = useState('');
+const Button = styled.button`
+  margin: 1vmin 0;
+`;
+
+const testExample = `[
+  {
+    "name": "Sparkle Angel",
+    "age": 2,
+    "colour": "blue"
+  },
+  {
+    "name": "Sparkle Angel",
+    "age": 2,
+    "colour": "blue"
+  },
+  {
+    "name": "Sparkle Angel",
+    "age": 2,
+    "colour": "blue"
+  }
+]`;  
+
+export default function JSONTextarea(): JSX.Element {
+  const [text, setText] = useState(testExample);
   const [isError, setIsError] = useState(false);
   const link = useSelector(getLinkString);
   const dispatch = useDispatch();
@@ -45,7 +68,7 @@ export default function JSONTextarea(): ReactElement {
     <>
       <JSONInput onChange={changeText} value={text}/>
       {isError && <ErrorMessage>Not A Valid JSON</ErrorMessage>}
-      <button onClick={sendData}>Send</button>
+      <Button onClick={sendData}>Send</Button>
     </>
   );
 }

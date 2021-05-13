@@ -1,16 +1,23 @@
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 
+export type LinkData = {
+  link: string;
+  entityId: string;
+  resource: string;
+}
+
 export type RootState = {
-  linkData: {
-    link: string;
-    entityId: string;
-  };
+  linkData: LinkData;
   tableData: TableData;
 }
 
 export type TableItem = {
-  id: string;
+  [key: string]: string | number;
+}
+
+export type DataInstance = {
+  _id: string;
   [key: string]: unknown;
 }
 

@@ -1,16 +1,32 @@
 import React from 'react';
-import './App.css';
-import JSONTextarea from './containers/JSONTextarea';
-import LinkInput from './containers/LinkInput';
+import styled from 'styled-components';
+
+import LinkInput from './modules/adminTable/containers/LinkInput';
+import JSONTextarea from './modules/adminTable/containers/JSONTextarea';
+import { Table } from 'modules/adminTable/containers/Table';
+import { Modal } from './modules/adminTable/containers/Modal';
+
+const MainWrapper = styled.div`
+  text-align: center;
+  background-color: #bcc2cf;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <LinkInput/>
-        <JSONTextarea/>
-      </header>
-    </div>
+    <MainWrapper>
+      <LinkInput/>
+      <JSONTextarea/>
+      <Modal>
+        <Table/>
+      </Modal>
+      <Table/>
+    </MainWrapper>
   );
 }
 
